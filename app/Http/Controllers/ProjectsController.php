@@ -93,7 +93,7 @@ class ProjectsController extends Controller
         return redirect('/projects');
 
     }
-qwfqfgvevgd
+    
     public function destroy($id)
     {
         $project=Project::findorFail($id);
