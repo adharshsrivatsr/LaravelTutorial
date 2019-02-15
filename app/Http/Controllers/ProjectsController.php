@@ -56,12 +56,10 @@ class ProjectsController extends Controller
         // {
         //         abort(403);
         // }
-        
         //abort_if($project->owner_id !== auth()->id(),403);  
 
-        $this->authorize('view',$project); 
-
-        //abort_if(! auth->user()->owns($project),403);
+        $this->authorize('view',$project); //use policy
+      //abort_if(! auth->user()->owns($project),403);
 
         //$project=Project::findorFail($id);
         return view('projects.show',compact('project'));
@@ -95,7 +93,7 @@ class ProjectsController extends Controller
         return redirect('/projects');
 
     }
-
+qwfqfgvevgd
     public function destroy($id)
     {
         $project=Project::findorFail($id);
