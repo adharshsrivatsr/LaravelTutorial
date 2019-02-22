@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title></title>
+        <style>
+            .color-red {color:red}
+            .color-blue {color:blue}
+        </style>
+    </head>
+
+    <body>
+        <div id="here" >
+           <ul>
+               <li :class='className' v-for='name in names'>{{name}} </li>
+           </ul>
+ 
+           <input id="in" type="text" v-model=newName>
+
+          <!-- <button v-on:click='onClick'>Add name</button>            -->
+           <button @click='onClick' :title="msg">Add name</button>
+
+        </div>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+
+        <script>  
+        
+       var app=  new Vue({
+            el: '#here',
+            data: 
+            {
+                newName: ' ',
+                names: ['Joe','Mary','Susan'],
+                msg: "Hover over",
+                className: 'color-red',
+                dis: true
+            }   ,
+
+            methods:{
+
+                onClick()
+                {
+                  //  alert('Add Name!');
+                    this.names.push(this.newName);
+                    this.newName=' ';
+                    //this.className='color-red';
+                },
+
+                
+            },
+
+            // mounted()
+            // {
+            //     document.querySelector('#b1').addEventListener('click',() => {
+
+            //     let name = document.querySelector('#in');
+            //     app.names.push(name.value);
+
+            //     name.value=' ';
+            //     });
+            // }
+           
+        });
+        
+        
+    </script>
+
+    </body>
+</html>
