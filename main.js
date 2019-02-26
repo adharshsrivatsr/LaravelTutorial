@@ -76,9 +76,81 @@ Vue.component('modal',
           </div>
     `
 }
-)
+);
 
 
+Vue.component('tabs',
+
+    {
+        template: 
+            `   
+            <div>
+                <div class="tabs">
+                    <ul>
+                        <li v-for='t in tabs' :class="{'is-active':t.isactive}">
+                            <a href='#' @click='selectTab(t)'> {{t.name}} </a>
+
+                        </li>
+                    </ul>
+                </div>
+
+                <div class='tabs-details'>
+                    <slot></slot>
+                </div>
+            </div>
+        `,
+
+        data()
+        {
+            return{
+                tabs:[]
+            }
+        },
+
+        created()
+        {
+            this.tabs=this.$children;
+        },
+
+        methods:
+        {
+                selectTab(selectedTab)
+                {
+                    this.tabs.forEach(tab => {
+
+                        tab.isactive=(selectedTab.name==tab.name);
+                    });
+                }
+        }
+    }
+);
+
+Vue.component('tab',
+{
+    props:{
+        name: {required:true},
+        selected: {default:false}
+    },
+
+    data()
+    {
+        return{
+        isactive:false
+        }
+
+    },
+
+    mounted()
+    {
+        this.isactive=this.selected;
+    },
+
+    template :
+        `
+          <div v-show=isactive><slot></slot></div>
+        `
+
+})
 
 new Vue({
     el: '#root',
